@@ -1,4 +1,4 @@
-/*! Browser bundle of nunjucks 3.2.2  */
+/*! Browser bundle of nunjucks 3.2.2   user*/
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory();
