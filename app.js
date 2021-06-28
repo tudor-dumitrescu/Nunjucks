@@ -4,10 +4,10 @@ const nunjucks=require('nunjucks');
 var app = express();
 app.use(express.static('/public'));
 
-app.get("/", function (req, res) {
+/*app.get("/", function (req, res) {
     res.sendFile(__dirname + "/views/index.html");
 });
-
+*/
 // Apply nunjucks and add customer filter and fuction
 
 var env=nunjucks.configure(['views/'], {
@@ -28,7 +28,7 @@ env.addGlobal('myFunc', function(obj, arg1) {
 
 
 app.get('/', function(req, res) {
-    res.render('views/index.html', {title: 'Main page'});
+    res.render('index.html', {title: 'Main page'});
 });
 
 app.get('/foo', function(req, res) {
