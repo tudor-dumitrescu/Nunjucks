@@ -29,3 +29,7 @@ $ node app.js
 In more simplistic terms, Node allows you to run JS outside of your browser
 i.e. in the terminal, and Express enables you to respon to individual client 
 requests and build APIs quickly. 
+
+7. Check example of Nunjucks on:
+
+https://riptutorial.com/node-js/example/20689/nunjucks
