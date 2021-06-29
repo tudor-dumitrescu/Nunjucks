@@ -1,8 +1,13 @@
 {% extends "index.html" %}
 
-{# This is comment #}
+{# This is a comment #}
 {% block content %}
     <h1>{{title}}</h1>
     {# apply custom function and next build-in and custom filters #}
-    {{ myFunc(variable1) | lower | myFilter(5, 'abc') }} 
+    {{ myFunc(variable1) | capitalize | myFilter(5, 'abc') | myFirstFunction() }} 
+    
 {% endblock %}
+
+{% block content1 %}
+    {{myFirstFunction()}}
+{% endblock %}    
