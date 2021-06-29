@@ -1,43 +1,50 @@
-const express=require('express');
-const nunjucks=require('nunjucks');
+const express=require("express");
+var nunjucks=require('nunjucks');
 
 var app = express();
 app.use(express.static('/public'));
 
-app.get("/", function (req, res) {
+/*app.get("/", function (req, res) {
     res.sendFile(__dirname + "/views/index.html");
 });
-
-// Apply nunjucks and add customer filter and fuction
+*/
+// Setup. Apply nunjucks and add customer filter and fuction
 
 var env=nunjucks.configure(['views/'], {
     autoescape: true,
     express: app
 });
 
-env.addFilter('myFilter', function(obj, arg1, arg2) {
-    console.log('myFilter', obj, arg1, arg2);
+env.addFilter('myFilter', function(obj, arg1, arg2) { // define your Filter aka function
+    console.log('myFilter:', obj, arg1, arg2);
+    console.log("BANANAS");
 
     return obj;
 });
 
 env.addGlobal('myFunc', function(obj, arg1) {
-    console.log('myFunc', obj, arg1);
+    console.log('myFunc:', obj, arg1);
     return obj;
 });
 
+env.addFilter('myFirstFunction', function(){
+    console.log("WATERMELON");
+    return;
+})
+
+// Rendering
 
 app.get('/', function(req, res) {
-    res.render('views/index.html', {title: 'Main page'});
+    res.render('index.html', {title: 'Main page'});
 });
 
 app.get('/foo', function(req, res) {
-    res.locals.variable1="I'll make you an offer you can't refuse";
+    res.locals.variable1="i'll make you an offer you can't refuse";
     res.render('foo.html', {title: 'Foo page in app.js'});
 });
 
 app.get('/plain', function(req, res){
-    res.render('firstfile.njk');
+    res.render('firstfile.njk', {title:"'.NJK' extension"});
 });
 
 app.listen(3000, function () {
