@@ -44,7 +44,13 @@ app.get('/foo', function(req, res) {
 });
 
 app.get('/plain', function(req, res){
+    res.locals.items = [{ title: "foo", id: 1 }, { title: "bar", id: 2}];
     res.render('firstfile.njk', {title:"'.NJK' extension"});
+    
+});
+
+app.get('/secondfile', function(req, res){
+    res.render('secondfile.njk');
 });
 
 app.listen(3000, function () {

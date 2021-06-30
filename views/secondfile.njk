@@ -1,0 +1,28 @@
+{% macro field(name, value='', type='text') %}
+<div class="field">
+  <input type="{{ type }}" name="{{ name }}" 
+         value="{{ value | escape }}" />
+</div>
+{% endmacro %}
+
+{# The above formula/filter/macro is a function that takes in 3 arguments (not all 3 are mandatory),
+and creates an HTML input field (check class="field") everytime it's called. 
+The type of input field is determined by the type we specify.
+F.eks. below we call the fuction once with the name='user' => creates 1st input field 
+       below we call the function twice, with name='pass' and type='password' => creates 2nd input field
+
+#}
+
+
+{% macro label(text) %}
+<div>
+  <label>{{ text }}</label>
+</div>
+{% endmacro %}
+
+
+{{ label('first') }}
+{{ field('user') }}
+{{ field('pass', type='password') }}
+{{ label('second') }}
+
