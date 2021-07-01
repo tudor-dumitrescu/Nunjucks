@@ -14,15 +14,85 @@ F.eks. below we call the fuction once with the name='user' => creates 1st input 
 #}
 
 
-{% macro label(text) %}
+{% macro label(text="default") %}
 <div>
   <label>{{ text }}</label>
 </div>
 {% endmacro %}
 
 
-{{ label('first') }}
-{{ field('user') }}
-{{ field('pass', type='password') }}
-{{ label('second') }}
+{{ label('first') }} {{ field('user') }}
 
+{{ label('second') }} {{ field('pass', type='password') }}
+<br>
+
+{#Built-in Filters #}
+
+{# 1. abs #}
+
+{{ -99 | abs }}<br>
+
+{# 2. batch #}
+
+{% set items = [1,2,3,4,5,6] %}
+{% set dash = joiner("-") %}
+{% for item in items | batch(2) %} {# this creates a list [] of 2 items within the original "items" []#}
+    {{ dash() }} {% for items in item %} {# for each list in the grand list #}
+       {{ items }}
+    {% endfor %}
+{% endfor %}
+<br>
+
+{# 3. groupby #}
+{# EX. 1 #}
+{% set objectList = [
+        { name: 'james', type: 'green' },
+        { name: 'john', type: 'blue' },
+        { name: 'jim', type: 'blue' },
+        { name: 'jessie', type: 'green' }
+    ]
+%}
+
+
+{% for type, objects in objectList | groupby("type") %}
+    <b>{{ type }}</b> :
+    {% for object in objects %}
+        {{ object.name }}
+    {% endfor %}<br>
+{% endfor %}
+<br>
+{{ "\n" }}
+
+
+{# EX.2 #}
+{% set posts = [
+      {
+        date: {
+          year: 2019
+        },
+        title: 'Post 1'
+      },
+      {
+        date: {
+          year: 2018
+        },
+        title: 'Post 2'
+      },
+      {
+        date: {
+          year: 2019
+        },
+        title: 'Post 3'
+      }
+    ]
+%}
+
+
+
+{% for year, posts in posts | groupby("date.year") %}
+    <b>{{ year }}</b>:
+    {% for post in posts %}
+        {{ post.title }}
+    {% endfor %}<br> {# after each year, put a line break, and the new year is added on a new line #}
+{% endfor %}
+<br>
