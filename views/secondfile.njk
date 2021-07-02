@@ -96,3 +96,33 @@ F.eks. below we call the fuction once with the name='user' => creates 1st input 
     {% endfor %}<br> {# after each year, put a line break, and the new year is added on a new line #}
 {% endfor %}
 <br>
+
+{# replace #}
+
+{% set word1="jack sparrow" %}
+{{ word1 | replace("jack", "sparrow")}}
+<br>
+{# replace #}
+
+{% set word2="aaabbbccc" %}
+{{ word2 | replace("a", "x", 3)}}
+<br>
+
+{# round #}
+
+{{ 4.5 | round(0, "floor")}}
+<br>
+
+{# slice #}
+
+{% set arr = [1,2,3,4,5,6,7,8,9] %}
+
+<div class="columwrapper">
+  {%- for items in arr | slice(3) %}
+    <ul class="column-{{ loop.index }}">
+    {%- for item in items %}
+      <li>{{ item }}</li>
+    {%- endfor %}
+    </ul>
+  {%- endfor %}
+</div>
