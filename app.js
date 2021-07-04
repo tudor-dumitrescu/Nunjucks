@@ -11,8 +11,9 @@ app.use(express.static('/public'));
 // Setup. Apply nunjucks and add customer filter and fuction
 
 var env=nunjucks.configure(['views/'], {
-    autoescape: true,
-    express: app
+    autoescape: true, // default
+    express: app,
+    watch: true // reload template after server change
 });
 
 env.addFilter('myFilter', function(obj, arg1, arg2) { // define your Filter aka function

@@ -126,3 +126,27 @@ F.eks. below we call the fuction once with the name='user' => creates 1st input 
     </ul>
   {%- endfor %}
 </div>
+<br>
+
+{# truncate #}
+
+
+{% set variable8="long name" %}
+{{ variable8 | truncate(3)}}
+<br>
+
+{{ variable8 | truncate(5,true, "!")}}
+<br>
+
+{# urlize #}
+
+{{ "work http://tracelink.dk link" | urlize | safe}}
+
+{% block text %}
+{{variable8}}
+{% endblock %}
+
+<br>
+{{ variable8 | upper}}
+<br>
+
