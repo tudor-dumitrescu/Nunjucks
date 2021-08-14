@@ -20,8 +20,25 @@
 <body>
 {% block content %} 
 <h1>{{title}}</h1>
-This comes from index.html
+This comes from index.html !!
 
 {% endblock %}
 </body>
 </html>
+
+
+
+{% set tableData=[["Pastilles - Orange 18-unit case - EAN: 15745000121080","104","12/09-22","DKSENO","2","4"], 
+                ["Mint case - EAN: 25700002082507", "2","25/02-23","SE","1","2"],
+                ["Pastilles - Cherry 18-unit case - EAN: 15745000121011","102","18/07-22","DK/SE/NO","1","2"],
+                ["Pastilles - Fresh Mint 18-unit case - EAN: 15745000121004","101","18/07-22","DKSENO","2","4"],
+                ["Pastilles - Orange 18-unit case - EAN: 15745000121080","104","12/09-22","DKSENO","2","4"],
+                ["Raspberry & Vanilla case - EAN: 25700002082538","1","29/01-23","SE","4","8"],
+                ["Strong Mint case - EAN: 25745000121032","5","22/02-23","SE","1","2"],
+                ["Strong Mint case - EAN: 25745000121032","1","29/01-23","SE","4","8"],
+                ["Raspberry & Vanilla case - EAN: 25700002082538","1","29/01-23","SE","4","8"]]  %}
+
+{{tableData | sort}}
+{% set tableDataSorted= tableData | sort %}
+
+
