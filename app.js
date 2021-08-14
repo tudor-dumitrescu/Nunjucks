@@ -1,4 +1,4 @@
-const express=require("express");
+const express=require("express"); // this or the "import" syntax
 var nunjucks=require('nunjucks');
 
 var app = express();
@@ -8,12 +8,13 @@ app.use(express.static('/public'));
     res.sendFile(__dirname + "/views/index.html");
 });
 */
-// Setup. Apply nunjucks and add customer filter and fuction
+// Setup. Apply nunjucks and add customer filters/fuctions and variables
 
-var env=nunjucks.configure(['views/'], {
-    autoescape: true, // default
-    express: app,
-    watch: true // reload template after server change
+var env=nunjucks.configure(['views/'], { // "env" for environment; it is our environment object
+    autoescape: true, // default; quoting out text
+    express: app, /* enable express syntax & framework and allocate it an app, 
+                     having Nunjucks as the rendering engine for the framework */
+    watch: true // reload template after server change; installed "chokidar" package
 });
 
 env.addFilter('myFilter', function(obj, arg1, arg2) { // define your Filter aka function
@@ -33,14 +34,16 @@ env.addFilter('myFirstFunction', function(){
     return;
 })
 
+
+
 // Rendering
 
-app.get('/', function(req, res) {
+app.get('/', function(req, res) { // async callback?
     res.render('index.html', {title: 'Main page'});
 });
 
 app.get('/foo', function(req, res) {
-    res.locals.variable1="i'll make you an offer you can't refuse";
+    res.locals.variable1="CHAKA KHAN";
     res.render('foo.html', {title: 'Foo page in app.js'});
 });
 
@@ -57,3 +60,5 @@ app.get('/secondfile', function(req, res){
 app.listen(3000, function () {
     console.log("Server is running on localhost3000");
 });
+
+const template=nunjucks.precompile('views/', {name: 'template'});
