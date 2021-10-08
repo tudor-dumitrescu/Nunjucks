@@ -35,11 +35,57 @@ env.addFilter('myFirstFunction', function(){
 })
 
 
+env.addFilter("rowSpan", ), function rowSpan(arrayObject,k){ // k is for the total number of columns
+    Object.keys(arrayObject).forEach(function (key){
+            cricket=arrayObject[key];
+       
+        cricketLength=cricket.length;
+    
+        if(cricket.length>=2){
+    
+            cricket[0].push(cricketLength);
+          rowSpanNumber=cricketLength;
+          for(var j=1; j<cricket.length; j++){
+              cricket[j].splice(0,1);
+            
+          }
+    
+          
+          
+          for(flat of cricket){
+              console.log("Line: " + flat);
+              if(flat==cricket[0]){
+                for(var property=0; property<k; property++){ // number of columns
+                      if(property==0){
+                          line=`<td rowspan=${rowSpanNumber}>${flat[property]}</td>`;
+                  console.log("Column: " + line);
+                        }
+                    else {
+                        line=`<td>${flat[property]}</td>`;
+                  console.log("Column: " + line);
+                     }
+                    }
+              
+               } 
+            else {
+                   for(var property=0; property<k-1; property++){ // number of columns
+                      line=`<td>${flat[property]}</td>`;
+                console.log("Column: " + line);
+              }
+           }
+    
+          }
+         }
+        }
+       )  
+      return;
+    };
+
 
 // Rendering
 
 app.get('/', function(req, res) { // async callback?
-    res.render('index.html', {title: 'Main page'});
+    res.render('index.html', {title: 'Index page'});
 });
 
 app.get('/foo', function(req, res) {
